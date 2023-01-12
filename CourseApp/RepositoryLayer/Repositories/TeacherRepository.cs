@@ -21,7 +21,7 @@ namespace RepositoryLayer.Repositories
         public void Delete(Teacher entity)
         {
             if (entity == null) throw new ArgumentNullException();
-            AppDbContext<Teacher>.datas.Add(entity);
+            AppDbContext<Teacher>.datas.Remove(entity);
         }
 
         public Teacher Get(Predicate<Teacher> predicate)
