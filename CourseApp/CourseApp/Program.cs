@@ -35,7 +35,7 @@ Option: string option = Console.ReadLine();
                 teacherController.Delete();
                 break;
             case (int)Options.GetTeacherById:
-                Console.WriteLine("getTeacherById");
+                teacherController.GetTeacherById();
                 break;
             case (int)Options.GetAllTeachers:
                 teacherController.GetAll();

@@ -171,6 +171,53 @@ namespace CourseApp.Controllers
                 goto SearchText;
 
             }
+            
+        }
+
+
+        public void GetTeacherById()
+        {
+
+            ConsoleColor.Cyan.WriteConsole("Please add teacher Id:");
+            SearchId: string searchId = Console.ReadLine();
+
+            if (searchId == string.Empty)
+            {
+                ConsoleColor.Red.WriteConsole("Please dont empty Id");
+                goto SearchId;
+            }
+
+
+            int Id;
+
+            bool isCorrectId = int.TryParse(searchId, out Id);
+
+            if (isCorrectId)
+            {
+                try
+                {
+
+                    var response = _teacherService.Search(searchId);
+
+                    foreach (var item in response)
+                    {
+                        ConsoleColor.Green.WriteConsole($"Id: {item.Id}, Name: {item.Name}, Surname: {item.Surname}, Address: {item.Address}, Age: {item.Age}");
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please add teacher Id again");
+                    goto SearchId;
+                }
+            }
+            else
+            {
+
+                ConsoleColor.Red.WriteConsole("Please add correct format teacher Id");
+                goto SearchId;
+
+            }
 
         }
 

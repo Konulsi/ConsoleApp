@@ -49,7 +49,9 @@ namespace ServiceLayer.Services
 
         public Teacher GetTeacherById(int Id)
         {
-            throw new NotImplementedException();
+           Teacher teacher = _repo.Get(m => m.Id == Id);
+
+            return teacher;
         }
 
         public List<Teacher> Search(string searchText)
