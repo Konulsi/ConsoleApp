@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CourseApp.Controllers
@@ -24,10 +25,16 @@ namespace CourseApp.Controllers
         {
             ConsoleColor.Cyan.WriteConsole("Please ad teacher name: ");
             TeacherName: string teacherName = Console.ReadLine();
+            string pattern = @"";
 
             if (teacherName == string.Empty )
             {
                 ConsoleColor.Red.WriteConsole("Please dont empty teacher name");
+                goto TeacherName;
+            }
+            else if (!Regex.IsMatch(teacherName , pattern))
+            {
+                ConsoleColor.Red.WriteConsole("Please correct teacher name");
                 goto TeacherName;
             }
 
@@ -181,28 +188,21 @@ namespace CourseApp.Controllers
             ConsoleColor.Cyan.WriteConsole("Please add teacher Id:");
             SearchId: string searchId = Console.ReadLine();
 
-            if (searchId == string.Empty)
-            {
-                ConsoleColor.Red.WriteConsole("Please dont empty Id");
-                goto SearchId;
-            }
+            int id;
 
+            bool isCorrectId = int.TryParse(searchId, out id);
 
-            int Id;
-
-            bool isCorrectId = int.TryParse(searchId, out Id);
 
             if (isCorrectId)
             {
                 try
                 {
 
-                    var response = _teacherService.Search(searchId);
+                    var response = _teacherService.GetTeacherById(id);
 
-                    foreach (var item in response)
-                    {
-                        ConsoleColor.Green.WriteConsole($"Id: {item.Id}, Name: {item.Name}, Surname: {item.Surname}, Address: {item.Address}, Age: {item.Age}");
-                    }
+                   
+                        ConsoleColor.Green.WriteConsole($"Id: {response.Id}, Name: {response.Name}, Surname: {response.Surname}, Address: {response.Address}, Age: {response.Age}");
+                    
                 }
                 catch (Exception ex)
                 {
@@ -218,6 +218,11 @@ namespace CourseApp.Controllers
                 goto SearchId;
 
             }
+
+        }
+
+        public void Update()
+        {
 
         }
 

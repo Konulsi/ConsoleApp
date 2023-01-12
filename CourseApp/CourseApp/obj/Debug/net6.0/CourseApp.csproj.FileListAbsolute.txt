@@ -14,3 +14,9 @@ C:\Users\konul\OneDrive\Masaüstü\CourseApp\CourseApp\CourseApp\obj\Debug\net6.
 C:\Users\konul\OneDrive\Masaüstü\CourseApp\CourseApp\CourseApp\obj\Debug\net6.0\CourseApp.dll
 C:\Users\konul\OneDrive\Masaüstü\CourseApp\CourseApp\CourseApp\obj\Debug\net6.0\refint\CourseApp.dll
 C:\Users\konul\OneDrive\Masaüstü\CourseApp\CourseApp\CourseApp\obj\Debug\net6.0\CourseApp.pdb
+C:\Users\konul\OneDrive\Masaüstü\CourseApp\CourseApp\CourseApp\bin\Debug\net6.0\CourseApp.deps.json
+C:\Users\konul\OneDrive\Masaüstü\CourseApp\CourseApp\CourseApp\bin\Debug\net6.0\CourseApp.runtimeconfig.json
+C:\Users\konul\OneDrive\Masaüstü\CourseApp\CourseApp\CourseApp\bin\Debug\net6.0\CourseApp.pdb
+C:\Users\konul\OneDrive\Masaüstü\CourseApp\CourseApp\CourseApp\obj\Debug\net6.0\CourseApp.csproj.CopyComplete
+C:\Users\konul\OneDrive\Masaüstü\CourseApp\CourseApp\CourseApp\obj\Debug\net6.0\CourseApp.genruntimeconfig.cache
+C:\Users\konul\OneDrive\Masaüstü\CourseApp\CourseApp\CourseApp\obj\Debug\net6.0\ref\CourseApp.dll
