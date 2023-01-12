@@ -1,0 +1,42 @@
+﻿using DomainLayer.Entities;
+using RepositoryLayer.Data;
+using RepositoryLayer.Repositories.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RepositoryLayer.Repositories
+{
+    public class TeacherRepository : IRepository<Teacher>
+    {
+        public void Create(Teacher entity)
+        {
+            if (entity == null) throw new ArgumentNullException();
+            AppDbContext<Teacher>.datas.Add(entity);
+            
+        }
+
+        public void Delete(Teacher entity)
+        {
+            if (entity == null) throw new ArgumentNullException();
+            AppDbContext<Teacher>.datas.Add(entity);
+        }
+
+        public Teacher Get(Predicate<Teacher> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Teacher> GetAll(Predicate<Teacher> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Teacher entity)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

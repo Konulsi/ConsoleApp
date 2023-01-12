@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Common
+namespace ServiceLayer.Services
 {
-    public abstract class BaseEntity
+    public class GroupService
     {
-        public int Id { get; set; }
     }
 }
