@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Services.Interfaces
 {
-    public interface ITeacherService
+    public interface ITeacherService 
     {
         Teacher Create(Teacher teacher);
-        void Delete(Teacher teacher);   
+        void Delete(int? id);   
         Teacher UpDate(int Id, Teacher teacher);
         Teacher GetTeacherById(int Id);
         List<Teacher> GetAllTeachers();
