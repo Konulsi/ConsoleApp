@@ -38,8 +38,6 @@ namespace RepositoryLayer.Repositories
         public void Update(Teacher entity)
         {
             if (entity == null) throw new ArgumentNullException();
-            var result = Get(m => m.Id == entity.Id && m.Name == entity.Name && m.Surname == entity.Surname && m.Address == entity.Address);
-            if (result == null) throw new ArgumentNullException();
 
         }
     }

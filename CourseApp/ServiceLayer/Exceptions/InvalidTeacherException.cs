@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Exceptions
 {
-    internal class InvalidTeacherException : Exception
+    public class InvalidTeacherException : Exception
     {
         public InvalidTeacherException(string message) : base(message) { }
         

@@ -65,13 +65,34 @@ namespace ServiceLayer.Services
             
         }
 
-        public Teacher UpDate(int id, Teacher teacher)
+        public Teacher UpDate(int? id, Teacher teacher)
         {
-            if (id == null) throw new InvalidTeacherException(ResponsMessage.NotFound);
-            //if (teacher == null) throw new InvalidTeacherException();
+            if (id == null) throw new ArgumentNullException();
+            if (teacher == null) throw new ArgumentNullException();
             var result = GetTeacherById(id);
-            return result;
-           
+
+            if (result != null)
+            {
+                teacher.Id = result.Id;
+                if(teacher.Name == string.Empty)
+                    teacher.Name = result.Name;
+                result.Name= teacher.Name;
+                if (teacher.Surname == string.Empty)
+                    teacher.Surname = result.Surname;
+                result.Surname = teacher.Surname;
+                if(teacher.Address == string.Empty)
+                    teacher.Address = result.Address;
+                result.Address = teacher.Address;
+                if( teacher.Age == null)
+                    teacher.Age = result.Age;
+                result.Age = teacher.Age;
+                _repo.Update(result);
+            }
+            else
+            {
+                throw new InvalidTeacherException(ResponsMessage.NotFound);
+            }
+            return teacher;
         }
     }
 }

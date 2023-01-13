@@ -29,7 +29,7 @@ Option: string option = Console.ReadLine();
                 teacherController.Create();
                 break;
             case (int)Options.UpdateTeacher:
-                Console.WriteLine("Uptade");
+                teacherController.Update();
                 break;
             case (int)Options.DeleteTeacher:
                 teacherController.Delete();
