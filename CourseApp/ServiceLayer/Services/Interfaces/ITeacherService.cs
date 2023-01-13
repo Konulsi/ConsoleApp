@@ -11,8 +11,8 @@ namespace ServiceLayer.Services.Interfaces
     {
         Teacher Create(Teacher teacher);
         void Delete(int? id);   
-        Teacher UpDate(int Id, Teacher teacher);
-        Teacher GetTeacherById(int Id);
+        Teacher UpDate(int id, Teacher teacher);
+        Teacher GetTeacherById(int? id);
         List<Teacher> GetAllTeachers();
         List<Teacher> Search(string searchText);
 

@@ -1,5 +1,6 @@
 ﻿using DomainLayer.Entities;
 using RepositoryLayer.Repositories;
+using ServiceLayer.Exceptions;
 using ServiceLayer.Helpers.Constants;
 using ServiceLayer.Services.Interfaces;
 using System;
@@ -47,26 +48,30 @@ namespace ServiceLayer.Services
             return _repo.GetAll();
         }
 
-        public Teacher GetTeacherById(int Id)
+        public Teacher GetTeacherById(int? id)
         {
-           Teacher teacher = _repo.Get(m => m.Id == Id);
+            if (id == null) throw new InvalidTeacherException(ResponsMessage.NotFound);
 
-            return teacher;
+            return _repo.Get(m => m.Id == id);
         }
 
         public List<Teacher> Search(string searchText)
         {
-            List<Teacher> teachers = _repo.GetAll(m =>m.Name.ToLower().Contains(searchText.ToLower()));
+            List<Teacher> teachers = _repo.GetAll(m =>m.Name.ToLower().Contains(searchText.ToLower()) || m.Surname.ToLower().Contains(searchText.ToLower()));
 
-            if (teachers.Count == 0) throw new NotFiniteNumberException(ResponsMessage.NotFound);
+            if (teachers.Count == 0) throw new InvalidTeacherException(ResponsMessage.NotFound);
 
             return teachers;
             
         }
 
-        public Teacher UpDate(int Id, Teacher teacher)
+        public Teacher UpDate(int id, Teacher teacher)
         {
-            throw new NotImplementedException();
+            if (id == null) throw new InvalidTeacherException(ResponsMessage.NotFound);
+            //if (teacher == null) throw new InvalidTeacherException();
+            var result = GetTeacherById(id);
+            return result;
+           
         }
     }
 }

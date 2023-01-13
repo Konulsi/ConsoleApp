@@ -61,5 +61,5 @@ Option: string option = Console.ReadLine();
 static void GetOptions()
 {
     ConsoleColor.Cyan.WriteConsole("Please select one option: ");
-    ConsoleColor.Cyan.WriteConsole("Teacher options: 1 - Create Teacher, 2 - Update Teacher, 3 - Delete Teacher, 4 - Get Teacher By Id, 5 - Get All Teachers, 6 - Search Teacher For Name And Surname");
+    ConsoleColor.Cyan.WriteConsole("Teacher options: \n 1 - Create Teacher,  \n 2 - Update Teacher, \n 3 - Delete Teacher, \n 4 - Get Teacher By Id, \n 5 - Get All Teachers, \n 6 - Search Teacher For Name And Surname");
 }
