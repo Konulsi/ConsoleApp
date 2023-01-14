@@ -11,11 +11,11 @@ namespace ServiceLayer.Services.Interfaces
 {
     public interface IGroupService
     {
-        Group Create(Group group);
+        Group Create( int ? teacherId , Group group);
         void Delete(int ? id);
         Group UpDate(int ? id, Group group);
         Group GetGroupById(int ? id);
-        List<Group> GetGroupsByCapacity(int ? id);
+        List<Group> GetGroupsByCapacity(int ? capacity);
         List<Group> GetGroupsByTeacherId(int ? id);
         List<Group> GetAllGroupsByTeacherName(string teacherName);
         List<Group> Search(string search);

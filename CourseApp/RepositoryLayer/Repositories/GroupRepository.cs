@@ -1,4 +1,5 @@
 ﻿using DomainLayer.Entities;
+using RepositoryLayer.Data;
 using RepositoryLayer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,22 +13,24 @@ namespace RepositoryLayer.Repositories
     {
         public void Create(Group entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) throw new ArgumentNullException();
+            AppDbContext<Group>.datas.Add(entity);
         }
 
         public void Delete(Group entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) throw new ArgumentNullException();
+            AppDbContext<Group>.datas.Remove(entity);
         }
 
         public Group Get(Predicate<Group> predicate)
         {
-            throw new NotImplementedException();
+            return AppDbContext<Group>.datas.Find(predicate);
         }
 
-        public List<Group> GetAll(Predicate<Group> predicate)
+        public List<Group> GetAll(Predicate<Group> predicate = null)
         {
-            throw new NotImplementedException();
+            return predicate == null ? AppDbContext<Group>.datas : AppDbContext<Group>.datas.FindAll(predicate);
         }
 
         public void Update(Group entity)

@@ -50,16 +50,21 @@ namespace ServiceLayer.Services
 
         public Teacher GetTeacherById(int? id)
         {
-            if (id == null) throw new InvalidTeacherException(ResponsMessage.NotFound);
+            if (id == null) throw new InvalidTeacherException(ResponsMessages.NotFound);
 
-            return _repo.Get(m => m.Id == id);
+            Teacher dbTeacher =  _repo.Get(m => m.Id == id);
+
+            if (dbTeacher == null) throw new InvalidTeacherException(ResponsMessages.NotFound);
+
+            return dbTeacher;
+
         }
 
         public List<Teacher> Search(string searchText)
         {
             List<Teacher> teachers = _repo.GetAll(m =>m.Name.ToLower().Contains(searchText.ToLower()) || m.Surname.ToLower().Contains(searchText.ToLower()));
 
-            if (teachers.Count == 0) throw new InvalidTeacherException(ResponsMessage.NotFound);
+            if (teachers.Count == 0) throw new InvalidTeacherException(ResponsMessages.NotFound);
 
             return teachers;
             
@@ -90,7 +95,7 @@ namespace ServiceLayer.Services
             }
             else
             {
-                throw new InvalidTeacherException(ResponsMessage.NotFound);
+                throw new InvalidTeacherException(ResponsMessages.NotFound);
             }
             return teacher;
         }

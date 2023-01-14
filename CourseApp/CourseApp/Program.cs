@@ -39,6 +39,8 @@ Option: string option = Console.ReadLine();
                 teacherController.GetTeacherById();
                 break;
             case (int)Options.GetAllTeachers:
+                Console.WriteLine();
+                Console.WriteLine("All teachers:");
                 teacherController.GetAll();
                 break;
             case (int)Options.SearchForTeacherNameAnSurname:
@@ -46,6 +48,18 @@ Option: string option = Console.ReadLine();
                 break;
             case (int)Options.CreateGroup:
                 groupController.Create();
+                break;
+            case (int)Options.UpdateGroup:
+                Console.WriteLine("Update");
+                break;
+            case (int)Options.DeleteGroup:
+                groupController.Delete();
+                break;
+            case (int)Options.GetGroupById:
+                groupController.GetGroupById();
+                break;
+            case (int)Options.GetGroupsByCapacity:
+                groupController.GetGroupsByCapacity();
                 break;
             default:
                 ConsoleColor.Red.WriteConsole("Please add correct option");
