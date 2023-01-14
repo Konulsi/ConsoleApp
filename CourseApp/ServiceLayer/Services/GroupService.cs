@@ -1,4 +1,7 @@
 ﻿using DomainLayer.Entities;
+using RepositoryLayer.Repositories;
+using ServiceLayer.Exceptions;
+using ServiceLayer.Helpers.Constants;
 using ServiceLayer.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,50 +13,80 @@ namespace ServiceLayer.Services
 {
     public class GroupService : IGroupService
     {
+
+        private readonly GroupRepository _repo;
+        private int _count = 1;
+
+        public GroupService()
+        {
+            _repo = new GroupRepository();
+        }
+
+
         public Group Create(Group group)
         {
-            //teacher.Id = _count;
-            //Teacher existTeacher = _repo.Get(m => m.Name.ToLower() == teacher.Name.ToLower());
-            //if (existTeacher == null) throw new Exception("Data already exist");
-            throw new NotImplementedException();
+            group.Id = _count;
+
+            Group existGroup = _repo.Get(m => m.Name.ToLower() == group.Name.ToLower());
+            if (existGroup != null) throw new Exception("Data already exist");
+
+            _repo.Create(group);
+            _count++;
+            return group;
         }
 
-        public void Delete(Group group)
+        public void Delete(int? id)
+        {
+            if (id == null) throw new ArgumentNullException();
+
+            Group dbGroup = _repo.Get(m => m.Id == id);
+
+            if (dbGroup == null) throw new NullReferenceException("Data notfound");
+
+            _repo.Delete(dbGroup);
+        }
+
+        public Group GetGroupById(int? id)
+        {
+
+            if (id == null) throw new InvalidTeacherException(ResponsMessage.NotFound);
+
+            return _repo.Get(m => m.Id == id);
+        }
+
+        public List<Group> GetAllGroupsByTeacherName(string teacherName)
         {
             throw new NotImplementedException();
         }
 
-        public List<Group> GetAllGroupsByTeacherName(string name)
+        public List<Group> GetGroupsByCapacity(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public Group GetGroupById(int Id)
+        public List<Group> GetGroupsByTeacherId(int? id)
+        {
+            if (id == null) throw new InvalidTeacherException(ResponsMessage.NotFound);
+
+            Group dbGroup = _repo.Get(m => m.Id == id);
+
+            if (dbGroup == null) throw new InvalidTeacherException(ResponsMessage.NotFound);
+
+            return _repo.GetAll(m=> m.Teacher.Id == id);
+            
+        }
+
+        public int GetGroupsCount()
         {
             throw new NotImplementedException();
         }
 
-        public List<Group> GetGroupsByCapacity(int Id)
+        public List<Group> Search(string search)
         {
             throw new NotImplementedException();
         }
 
-        public List<Group> GetGroupsByTeacherId(int Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Group> GetGroupsCount()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Group> Search(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Group UpDate(int Id, Group group)
+        public Group UpDate(int? id, Group group)
         {
             throw new NotImplementedException();
         }

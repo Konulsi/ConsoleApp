@@ -24,51 +24,51 @@ namespace CourseApp.Controllers
 
         public void Create()
         {
-            ConsoleColor.Cyan.WriteConsole("Please ad teacher name: ");
+            ConsoleColor.Cyan.WriteConsole("Please, add teacher name: ");
             TeacherName: string teacherName = Console.ReadLine();
             string pattern = "^(?!\\s+$)[a-zA-Z]+$";
 
             if (teacherName == string.Empty )
             {
-                ConsoleColor.Red.WriteConsole("Please dont empty teacher name");
+                ConsoleColor.Red.WriteConsole("Please, dont add empty teacher name");
                 goto TeacherName;
             }
             else if (!Regex.IsMatch(teacherName , pattern))
             {
-                ConsoleColor.Red.WriteConsole("Please correct teacher name");
+                ConsoleColor.Red.WriteConsole("Please, add correct teacher name");
                 goto TeacherName;
             }
 
 
 
-            ConsoleColor.Cyan.WriteConsole("Please ad teacher surname: ");
+            ConsoleColor.Cyan.WriteConsole("Please, add teacher surname: ");
             TeacherSurname: string teacherSurname = Console.ReadLine();
             
 
             if (teacherSurname == string.Empty)
             {
-                ConsoleColor.Red.WriteConsole("Please dont empty teacher surname");
+                ConsoleColor.Red.WriteConsole("Please, dont add empty teacher surname");
                 goto TeacherSurname;
             }
             else if (!Regex.IsMatch(teacherSurname, pattern))
             {
-                ConsoleColor.Red.WriteConsole("Please correct teacher surname");
+                ConsoleColor.Red.WriteConsole("Please, add correct teacher surname");
                 goto TeacherSurname;
             }
 
 
-            ConsoleColor.Cyan.WriteConsole("Please ad teacher address: ");
+            ConsoleColor.Cyan.WriteConsole("Please, add teacher address: ");
             TeacherAddress: string teacherAddress = Console.ReadLine();
 
             if (teacherAddress == string.Empty)
             {
-                ConsoleColor.Red.WriteConsole("Please dont empty teacher address");
+                ConsoleColor.Red.WriteConsole("Please, dont add empty teacher address");
                 goto TeacherAddress;
             }
           
 
 
-            ConsoleColor.Cyan.WriteConsole("Please ad teacher Age: ");
+            ConsoleColor.Cyan.WriteConsole("Please, add teacher Age: ");
             TeacherAge: string teacherAge = Console.ReadLine();
 
             int age;

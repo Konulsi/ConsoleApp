@@ -7,6 +7,7 @@ using ServiceLayer.Helpers.Enums;
 using ServiceLayer.Helpers.Extentions;
 
 TeacherController teacherController = new();
+GroupController groupController = new();
 
 
 while (true)
@@ -43,6 +44,9 @@ Option: string option = Console.ReadLine();
             case (int)Options.SearchForTeacherNameAnSurname:
                 teacherController.Search();
                 break;
+            case (int)Options.CreateGroup:
+                groupController.Create();
+                break;
             default:
                 ConsoleColor.Red.WriteConsole("Please add correct option");
                 goto Option;
@@ -61,5 +65,8 @@ Option: string option = Console.ReadLine();
 static void GetOptions()
 {
     ConsoleColor.Cyan.WriteConsole("Please select one option: ");
-    ConsoleColor.Cyan.WriteConsole("Teacher options: \n 1 - Create Teacher,  \n 2 - Update Teacher, \n 3 - Delete Teacher, \n 4 - Get Teacher By Id, \n 5 - Get All Teachers, \n 6 - Search Teacher For Name And Surname");
+    ConsoleColor.Cyan.WriteConsole("Teacher options: \n 1 - Create Teacher,  \n 2 - Update Teacher, \n 3 - Delete Teacher, \n 4 - Get Teacher By Id, \n 5 - Get All Teachers, \n 6 - Search Teacher For Name And Surname \n " +
+        "Group Options:\n 7 - Create Group \n 8 - Update Group \n 9 - Delete Group \n 10 - GetGroupById \n 11 - GetGroupsByCapacity \n 12 - GetGroupsByTeacherId \n 13 - GetAllGroupsByTeacherName \n 14 - SearchForGroupByName \n 15 - GetAllGroupsCount ");
 }
+
+

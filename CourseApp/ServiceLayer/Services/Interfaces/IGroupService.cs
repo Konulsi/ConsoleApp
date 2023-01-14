@@ -1,4 +1,6 @@
 ﻿using DomainLayer.Entities;
+using RepositoryLayer.Repositories;
+using ServiceLayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +12,20 @@ namespace ServiceLayer.Services.Interfaces
     public interface IGroupService
     {
         Group Create(Group group);
-        void Delete(Group group);
-        Group UpDate(int Id, Group group);
-        Group GetGroupById(int Id);
-        List<Group> GetGroupsByCapacity(int Id);
-        List<Group> GetGroupsByTeacherId(int Id);
-        List<Group> GetAllGroupsByTeacherName(string name);
-        List<Group> Search(string name);
-        List<Group> GetGroupsCount();
+        void Delete(int ? id);
+        Group UpDate(int ? id, Group group);
+        Group GetGroupById(int ? id);
+        List<Group> GetGroupsByCapacity(int ? id);
+        List<Group> GetGroupsByTeacherId(int ? id);
+        List<Group> GetAllGroupsByTeacherName(string teacherName);
+        List<Group> Search(string search);
+        int GetGroupsCount();
 
     }
 }
+
+
+
+
+
+
