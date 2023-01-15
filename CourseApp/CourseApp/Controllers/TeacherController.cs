@@ -1,4 +1,6 @@
 ﻿using DomainLayer.Entities;
+using ServiceLayer.Exceptions;
+using ServiceLayer.Helpers.Constants;
 using ServiceLayer.Helpers.Extentions;
 using ServiceLayer.Services;
 using ServiceLayer.Services.Interfaces;
@@ -28,7 +30,7 @@ namespace CourseApp.Controllers
             TeacherName: string teacherName = Console.ReadLine();
             string pattern = "^(?!\\s+$)[a-zA-Z]+$";
 
-            if (teacherName == string.Empty )
+            if (teacherName.Trim() == string.Empty )
             {
                 ConsoleColor.Red.WriteConsole("Please, dont add empty teacher name");
                 goto TeacherName;
@@ -45,7 +47,7 @@ namespace CourseApp.Controllers
             TeacherSurname: string teacherSurname = Console.ReadLine();
             
 
-            if (teacherSurname == string.Empty)
+            if (teacherSurname.Trim() == string.Empty)
             {
                 ConsoleColor.Red.WriteConsole("Please, dont add empty teacher surname");
                 goto TeacherSurname;
@@ -238,76 +240,37 @@ namespace CourseApp.Controllers
         public void Update()
         {
 
-            ConsoleColor.Cyan.WriteConsole("Please, add teacher id");
+            ConsoleColor.Cyan.WriteConsole("Please, enter teacher id");
             TeacherId: string teacherIdStr = Console.ReadLine();
             int teacherId;
             bool isCoorectId = int.TryParse(teacherIdStr, out teacherId);
             
             if (!isCoorectId)
             {
-                ConsoleColor.Red.WriteConsole("Please enter correct format id: ");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format id: ");
                 goto TeacherId;
             }
-
-
-
-            ConsoleColor.Cyan.WriteConsole("Please, enter teacher name");
-            TeacherName: string teacherName = Console.ReadLine();
-            string pattern2 = "^(?!\\s+$)[a-z A-Z]+$";
-
             try
             {
-                //if (!Regex.IsMatch(teacherName, pattern2))
-                //{
-                //    ConsoleColor.Red.WriteConsole("Please, add correct teacher name");
-                //    goto TeacherName;
-                //}
-
+                var existTeacher = _teacherService.GetTeacherById(teacherId);
+                if (existTeacher == null) throw new InvalidTeacherException(ResponsMessages.NotFound);
             }
             catch (Exception ex)
             {
-                ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter teacher name again: ");
-                goto TeacherName;
+                ConsoleColor.Red.WriteConsole(ex.Message);
+                goto TeacherId;
             }
+            ConsoleColor.Cyan.WriteConsole("Please, enter teacher name");
+            string teacherName = Console.ReadLine();
 
             ConsoleColor.Cyan.WriteConsole("Please, enter teacher surname");
-            TeacherSurname: string teacherSurname = Console.ReadLine();
-            try
-            {
-                //if (!Regex.IsMatch(teacherSurname, pattern2))
-                //{
-                //    ConsoleColor.Red.WriteConsole("Please, enter correct teacher surname");
-                //    goto TeacherSurname;
-                //}
-
-            }
-            catch (Exception ex)
-            {
-
-                ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter teacher surname again: ");
-                goto TeacherSurname;
-            }
-
+            string teacherSurname = Console.ReadLine();
+          
             ConsoleColor.Cyan.WriteConsole("Please, enter teacher address");
-            TeacherAddress: string teacherAddress = Console.ReadLine();
-
-            try
-            {
-                //if (!Regex.IsMatch(teacherAddress, pattern2))
-                //{
-                //    ConsoleColor.Red.WriteConsole("Please, enter correct teacher address");
-                //    goto TeacherAddress;
-                //}
-            }
-            catch (Exception ex)
-            {
-                ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter teacher address again: ");
-                goto TeacherAddress;
-            }
-
+            string teacherAddress = Console.ReadLine();
+           
             ConsoleColor.Cyan.WriteConsole("Please, enter teacher age");
-            TeacherAge: string teacherAgeStr = Console.ReadLine();
-
+        TeacherAge: string teacherAgeStr = Console.ReadLine();
             int teacherAge;
             bool isCorrectAge = int.TryParse(teacherAgeStr, out teacherAge);
             if (!isCorrectAge)
@@ -317,29 +280,25 @@ namespace CourseApp.Controllers
                 goto TeacherAge; 
                 
             }
-           
-            if(isCoorectId)
+            try
             {
-                try
+                Teacher teacher = new Teacher()
                 {
-                    Teacher teacher = new Teacher()
-                    {
-                        Name = teacherName,
-                        Surname = teacherSurname,
-                        Address = teacherAddress,
-                        Age = teacherAge,
-                    };
-                    Teacher teacher1 = new();
-                    teacher1 = _teacherService.UpDate(teacherId, teacher);
-
-                    ConsoleColor.Green.WriteConsole("Succesfully update");
-                }
-                catch (Exception ex)
-                {
-                    ConsoleColor.Red.WriteConsole(ex.Message); 
-                }
-                
+                    Name = teacherName,
+                    Surname = teacherSurname,
+                    Address = teacherAddress,
+                    Age = teacherAge,
+                };
+                Teacher teacher1 = new();
+                teacher1 = _teacherService.UpDate(teacherId, teacher);
+                ConsoleColor.Green.WriteConsole("Succesfully updated");
             }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message);
+                goto TeacherId;
+            }
+                
         }
 
     }

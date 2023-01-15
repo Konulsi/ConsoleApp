@@ -52,14 +52,12 @@ namespace ServiceLayer.Services
         {
             if (id == null) throw new InvalidTeacherException(ResponsMessages.NotFound);
 
-            Teacher dbTeacher =  _repo.Get(m => m.Id == id);
+            Teacher dbTeacher = _repo.Get(m => m.Id == id);
 
             if (dbTeacher == null) throw new InvalidTeacherException(ResponsMessages.NotFound);
 
             return dbTeacher;
-
         }
-
         public List<Teacher> Search(string searchText)
         {
             List<Teacher> teachers = _repo.GetAll(m =>m.Name.ToLower().Contains(searchText.ToLower()) || m.Surname.ToLower().Contains(searchText.ToLower()));
@@ -91,6 +89,7 @@ namespace ServiceLayer.Services
                 if( teacher.Age == null)
                     teacher.Age = result.Age;
                 result.Age = teacher.Age;
+
                 _repo.Update(result);
             }
             else

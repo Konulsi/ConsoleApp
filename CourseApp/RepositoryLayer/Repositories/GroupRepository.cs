@@ -36,7 +36,6 @@ namespace RepositoryLayer.Repositories
         public void Update(Group entity)
         {
             if (entity == null) throw new ArgumentNullException();
-            AppDbContext<Group>.datas.Add(entity);
         }
     }
 }

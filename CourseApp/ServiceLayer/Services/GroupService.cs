@@ -83,7 +83,6 @@ namespace ServiceLayer.Services
             if (dbGroup.Count == 0) throw new InvalidGroupException(ResponsMessages.NotFound);
 
             return dbGroup;
-
         }
 
         public List<Group> GetGroupsByTeacherId(int? id)
@@ -95,7 +94,6 @@ namespace ServiceLayer.Services
             if (dbGroup.Count == 0) throw new InvalidGroupException(ResponsMessages.NotFound);
 
             return dbGroup;
-            
         }
 
         public int GetGroupsCount()
@@ -120,7 +118,7 @@ namespace ServiceLayer.Services
             if (dbGroup != null)
             {
                 group.Id = dbGroup.Id;
-                if (group.Name == String.Empty)
+                if (group.Name.Trim() == String.Empty)
                     group.Name = dbGroup.Name;
                 dbGroup.Name = group.Name;
                 if (group.Capacity == null)
