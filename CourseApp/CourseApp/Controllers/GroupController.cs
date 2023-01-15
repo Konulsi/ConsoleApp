@@ -59,33 +59,34 @@ namespace CourseApp.Controllers
                 goto GroupName;
             }
 
-
-
-
-
             ConsoleColor.Cyan.WriteConsole("Please, enter group capacity");
             Capacity: string capacityStr = Console.ReadLine();
             int capacity;
             bool isCorrectCapacity = int.TryParse(capacityStr, out capacity);
 
-            if (!isCorrectCapacity && capacity < 0)
+            if (!isCorrectCapacity)
             {
                 ConsoleColor.Red.WriteConsole("Please, enter correct format capacity number");
                 goto Capacity;
             }
-            else if (capacity >= 25)
+            else if (capacity < 0)
             {
-                ConsoleColor.Red.WriteConsole("Can not be greater than 25 ");
+                ConsoleColor.Red.WriteConsole("Please, enter correct number ");
                 goto Capacity;
             }
 
 
             ConsoleColor.Cyan.WriteConsole("Please, enter teacher id for group: ");
-            Id: string idStr = Console.ReadLine();
+        GroupIdStr: string groupIdStr = Console.ReadLine();
             int id;
-            bool isCorrectId = int.TryParse(idStr, out id);
-
-            if (isCorrectId || id < 0)
+            bool isCorrectId = int.TryParse(groupIdStr, out id);
+            
+            if (groupIdStr == string.Empty)
+            {
+                ConsoleColor.Red.WriteConsole("Please, enter correct id");
+                goto GroupIdStr;
+            }
+            if (isCorrectId)
             {
                 try
                 {
@@ -96,27 +97,27 @@ namespace CourseApp.Controllers
                         CreateDate = DateTime.Now,
                     };
 
-                    _groupService.Create(id, group);
+                    var response =  _groupService.Create(id, group);
 
                     ConsoleColor.Green.WriteConsole
-                     (  $"Id: {group.Id}, Name: {group.Name}, Capasity: {group.Capacity}," +
-                        $" Create date: {group.CreateDate.ToString("dd,MM,yyyy")},"+
-                        $" Teacher: {group.Teacher.Id}, {group.Teacher.Name}, {group.Teacher.Surname}," +
-                        $"{group.Teacher.Age}, {group.Teacher.Address}");
+                     (  $"Id: {response.Id}, Name: {response.Name}, Capasity: {response.Capacity}," +
+                        $" Create date: {response.CreateDate.ToString("dd,MM,yyyy")},"+
+                        $" Teacher: {response.Teacher.Id}, {response.Teacher.Name}, {response.Teacher.Surname}," +
+                        $"{response.Teacher.Age}, {response.Teacher.Address}");
 
                 }
                 catch (Exception ex)
                 {
 
                     ConsoleColor.Red.WriteConsole(ex.Message + msg);
-                    goto Id;
+                    goto GroupName;
                 }
 
             }
             else
             {
                 ConsoleColor.Red.WriteConsole("Please, enter correct format id" + msg);
-                goto Id;
+                goto GroupIdStr;
             }
           
 

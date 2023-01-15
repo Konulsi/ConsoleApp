@@ -58,6 +58,8 @@ namespace ServiceLayer.Services
 
             return dbTeacher;
         }
+
+
         public List<Teacher> Search(string searchText)
         {
             List<Teacher> teachers = _repo.GetAll(m =>m.Name.ToLower().Contains(searchText.ToLower()) || m.Surname.ToLower().Contains(searchText.ToLower()));
@@ -67,6 +69,7 @@ namespace ServiceLayer.Services
             return teachers;
             
         }
+
 
         public Teacher UpDate(int? id, Teacher teacher)
         {

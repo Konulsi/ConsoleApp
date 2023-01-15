@@ -240,7 +240,7 @@ namespace CourseApp.Controllers
         public void Update()
         {
 
-            ConsoleColor.Cyan.WriteConsole("Please, enter teacher id");
+            ConsoleColor.DarkCyan.WriteConsole("Please, enter teacher id for update");
             TeacherId: string teacherIdStr = Console.ReadLine();
             int teacherId;
             bool isCoorectId = int.TryParse(teacherIdStr, out teacherId);
