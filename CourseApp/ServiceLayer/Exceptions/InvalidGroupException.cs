@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Exceptions
 {
-    internal class InvalidGroupException : Exception
+    public class InvalidGroupException : Exception
     {
         public InvalidGroupException(string message) : base(message) { }
        

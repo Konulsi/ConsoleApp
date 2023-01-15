@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using Group = DomainLayer.Entities.Group;
 using ServiceLayer.Helpers.Constants;
 using Microsoft.VisualBasic;
+using ServiceLayer.Exceptions;
 
 namespace CourseApp.Controllers
 {
@@ -18,10 +19,12 @@ namespace CourseApp.Controllers
     {
 
         private readonly IGroupService _groupService;
+        private readonly ITeacherService _teacherService;
 
         public GroupController()
         {
             _groupService = new GroupService();
+            _teacherService = new TeacherService();
         }
 
         string pattern = "^(?!\\s+$)['.-]+$";
@@ -175,14 +178,14 @@ namespace CourseApp.Controllers
                 catch (Exception ex)
                 {
 
-                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, add teacher Id again");
+                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter teacher Id again");
                     goto SearchId;
                 }
             }
             else
             {
 
-                ConsoleColor.Red.WriteConsole("Please, add correct format teacher Id");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format teacher Id");
                 goto SearchId;
 
             }
@@ -265,6 +268,7 @@ namespace CourseApp.Controllers
 
         }
 
+
         public void GetGroupsCount()
         {
             
@@ -272,7 +276,181 @@ namespace CourseApp.Controllers
 
                 ConsoleColor.Green.WriteConsole($"All group count: {result}");
             
+        }
 
+
+
+        public void SearchByName()
+        {
+            ConsoleColor.Cyan.WriteConsole("Please add search text:");
+            SearchText: string searchText = Console.ReadLine();
+            string pattern = @"^(?!\\s+$)[a-zA-Z,'. -]+$";
+
+            if (searchText == string.Empty)
+            {
+                ConsoleColor.Red.WriteConsole("Please dont empty text");
+                goto SearchText;
+            }
+
+            try
+            {
+
+                var response = _groupService.SearchByName(searchText);
+
+                foreach (var item in response)
+                {
+
+                   
+                    ConsoleColor.Green.WriteConsole
+                     (  $"Id: {item.Id}, Name: {item.Name}, Capasity: {item.Capacity}," +
+                        $" Create date: {item.CreateDate.ToString("dd,MM,yyyy")},"+
+                        $" Teacher: {item.Teacher.Id}, {item.Teacher.Name}, {item.Teacher.Surname}," +
+                        $"{item.Teacher.Age}, {item.Teacher.Address}");
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please add search text again");
+                goto SearchText;
+
+            }
+        }
+
+
+        public void GetGroupsByTeacherId()
+        {
+
+            ConsoleColor.Cyan.WriteConsole("Please, enter the group teacher Id: ");
+        TeacherIdStr: string teacherIdStr = Console.ReadLine();
+
+            int id;
+
+            bool isCorrectId = int.TryParse(teacherIdStr, out id);
+
+
+            if (isCorrectId && id > 0)
+            {
+                try
+                {
+
+                    var response = _groupService.GetGroupsByTeacherId(id);
+
+                    foreach (var item in response)
+                    {
+
+
+                        ConsoleColor.Green.WriteConsole
+                         ($"Id: {item.Id}, Name: {item.Name}, Capasity: {item.Capacity}," +
+                            $" Create date: {item.CreateDate.ToString("dd,MM,yyyy")}," +
+                            $" Teacher: {item.Teacher.Id}, {item.Teacher.Name}, {item.Teacher.Surname}," +
+                            $"{item.Teacher.Age}, {item.Teacher.Address}");
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter the group teacher Id again");
+                    goto TeacherIdStr;
+                }
+            }
+            else
+            {
+
+                ConsoleColor.Red.WriteConsole("Please,enter correct the group teacher Id");
+                goto TeacherIdStr;
+
+            }
+        }
+
+
+        public void Update()
+        {
+
+            ConsoleColor.Cyan.WriteConsole("Please, enter group id");
+        GroupId: string groupIdStr = Console.ReadLine();
+            int groupId;
+            bool isCoorectId = int.TryParse(groupIdStr, out groupId);
+
+            
+            
+            if (!isCoorectId || groupId < 0)
+            {
+                ConsoleColor.Red.WriteConsole("Please enter correct format id: ");
+                goto GroupId;
+            }
+            else
+            {
+                ConsoleColor.Cyan.WriteConsole("Please, enter group name");
+            GroupName: string groupName = Console.ReadLine();
+
+
+                ConsoleColor.Cyan.WriteConsole("Please, enter group capacity");
+            GroupCapasity: string groupCapasityStr = Console.ReadLine();
+
+                int groupCapacity;
+                bool isCorrectCapacity = int.TryParse(groupCapasityStr, out groupCapacity);
+
+                if (!isCorrectCapacity && groupCapacity < 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Please, enter correct format capacity number");
+                    goto GroupCapasity;
+                }
+                else if (groupCapacity >= 25)
+                {
+                    ConsoleColor.Red.WriteConsole("Can not be greater than 25 ");
+                    goto GroupCapasity;
+                }
+
+
+                ConsoleColor.Cyan.WriteConsole("Please, enter the group teacher id");
+            TeacherId: string teacherIdStr = Console.ReadLine();
+                int teacherId;
+
+                bool isCorrectId = int.TryParse(teacherIdStr, out teacherId);
+                if (!isCorrectId)
+                {
+
+                    ConsoleColor.Red.WriteConsole("Please , enter correct format teacher id: ");
+                    goto TeacherId;
+
+                }
+                try
+                {
+                    var response = _teacherService.GetTeacherById(teacherId);
+                    if (response == null) throw new InvalidGroupException(ResponsMessages.NotFound);
+
+                    Group group = new Group()
+                    {
+                        Name = groupName,
+                        Capacity = groupCapacity,
+                        Teacher = response
+                    };
+
+                    Group group1 = new();
+                    group1 = _groupService.UpDate(groupId, group);
+
+                    ConsoleColor.Green.WriteConsole($"Succesfully update {group.Name} {group.Teacher.Name}");
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                }
+            }
+            
+           
+         
+
+
+
+    
+
+          
         }
 
     }

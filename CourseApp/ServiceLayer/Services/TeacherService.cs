@@ -79,13 +79,13 @@ namespace ServiceLayer.Services
             if (result != null)
             {
                 teacher.Id = result.Id;
-                if(teacher.Name == string.Empty)
+                if(teacher.Name == String.Empty)
                     teacher.Name = result.Name;
                 result.Name= teacher.Name;
-                if (teacher.Surname == string.Empty)
+                if (teacher.Surname == String.Empty)
                     teacher.Surname = result.Surname;
                 result.Surname = teacher.Surname;
-                if(teacher.Address == string.Empty)
+                if(teacher.Address == String.Empty)
                     teacher.Address = result.Address;
                 result.Address = teacher.Address;
                 if( teacher.Age == null)

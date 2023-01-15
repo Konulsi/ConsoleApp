@@ -21,7 +21,7 @@ namespace ServiceLayer.Helpers.Enums
         GetGroupsByCapacity,
         GetGroupsByTeacherId,
         GetAllGroupsByTeacherName,
-        SearchForGroupByName,
+        SearchByName,
         GetAllGroupsCount
 
     }

@@ -50,7 +50,7 @@ Option: string option = Console.ReadLine();
                 groupController.Create();
                 break;
             case (int)Options.UpdateGroup:
-                Console.WriteLine("Update");
+                groupController.Update();
                 break;
             case (int)Options.DeleteGroup:
                 groupController.Delete();
@@ -60,6 +60,18 @@ Option: string option = Console.ReadLine();
                 break;
             case (int)Options.GetGroupsByCapacity:
                 groupController.GetGroupsByCapacity();
+                break;
+            case (int)Options.GetGroupsByTeacherId:
+                groupController.GetGroupsByTeacherId();
+                break;
+            case (int)Options.GetAllGroupsByTeacherName:
+                groupController.GetAllGroupsByTeacherName();
+                break;
+            case (int)Options.SearchByName:
+                groupController.SearchByName();
+                break;
+            case (int)Options.GetAllGroupsCount:
+                groupController.GetGroupsCount();
                 break;
             default:
                 ConsoleColor.Red.WriteConsole("Please add correct option");
@@ -80,7 +92,7 @@ static void GetOptions()
 {
     ConsoleColor.Cyan.WriteConsole("Please select one option: ");
     ConsoleColor.Cyan.WriteConsole("Teacher options: \n 1 - Create Teacher,  \n 2 - Update Teacher, \n 3 - Delete Teacher, \n 4 - Get Teacher By Id, \n 5 - Get All Teachers, \n 6 - Search Teacher For Name And Surname \n " +
-        "Group Options:\n 7 - Create Group \n 8 - Update Group \n 9 - Delete Group \n 10 - GetGroupById \n 11 - GetGroupsByCapacity \n 12 - GetGroupsByTeacherId \n 13 - GetAllGroupsByTeacherName \n 14 - SearchForGroupByName \n 15 - GetAllGroupsCount ");
+        "Group Options:\n 7 - Create Group \n 8 - Update Group \n 9 - Delete Group \n 10 - GetGroupById \n 11 - GetGroupsByCapacity \n 12 - GetGroupsByTeacherId \n 13 - GetAllGroupsByTeacherName \n 14 - SearchByName \n 15 - GetAllGroupsCount ");
 }
 
 

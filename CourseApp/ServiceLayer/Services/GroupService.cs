@@ -66,7 +66,7 @@ namespace ServiceLayer.Services
         {
             if (teacherName == null) throw new InvalidGroupException(ResponsMessages.NotFound);
 
-            List<Group> dbGroup = _repo.GetAll(m => m.Teacher.Name == teacherName);
+            List<Group> dbGroup = _repo.GetAll(m => m.Teacher.Name.Trim().ToLower() == teacherName.Trim().ToLower());
 
             if (dbGroup.Count == 0) throw new InvalidGroupException(ResponsMessages.NotFound);
 
@@ -86,11 +86,11 @@ namespace ServiceLayer.Services
 
         }
 
-        public List<Group> GetGroupsByTeacherId(int? teacherId)
+        public List<Group> GetGroupsByTeacherId(int? id)
         {
-            if (teacherId == null) throw new InvalidGroupException(ResponsMessages.NotFound);
+            if (id == null) throw new InvalidGroupException(ResponsMessages.NotFound);
 
-            List<Group> dbGroup = _repo.GetAll(m => m.Teacher.Id == teacherId);
+            List<Group> dbGroup = _repo.GetAll(m => m.Teacher.Id == id);
 
             if (dbGroup.Count == 0) throw new InvalidGroupException(ResponsMessages.NotFound);
 
@@ -103,16 +103,37 @@ namespace ServiceLayer.Services
             return _repo.GetAll().Count;
         }
 
-        public List<Group> Search(string search)
+        public List<Group> SearchByName(string name)
         {
-            List<Group> groups = _repo.GetAll(m => m.Name.ToLower().Contains(search.ToLower()));
+            List<Group> groups = _repo.GetAll(m => m.Name.Trim().ToLower().Contains(name.Trim().ToLower()));
             if(groups.Count == 0) throw new InvalidGroupException(ResponsMessages.NotFound);
             return groups;
         }
 
         public Group UpDate(int? id, Group group)
         {
-            throw new NotImplementedException();
+
+            if (id == null) throw new ArgumentNullException();
+
+            Group dbGroup = GetGroupById(id);
+
+            if (dbGroup != null)
+            {
+                group.Id = dbGroup.Id;
+                if (group.Name == String.Empty)
+                    group.Name = dbGroup.Name;
+                dbGroup.Name = group.Name;
+                if (group.Capacity == null)
+                    group.Capacity = dbGroup.Capacity;
+                dbGroup.Capacity = group.Capacity;
+               
+                _repo.Update(dbGroup);
+            }
+            else
+            {
+                throw new InvalidGroupException(ResponsMessages.NotFound);
+            }
+            return group;
         }
     }
 }
