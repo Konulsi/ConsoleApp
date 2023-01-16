@@ -114,25 +114,9 @@ namespace ServiceLayer.Services
         {
 
             if (id == null) throw new ArgumentNullException();
+            group.Id = (int)id;
+            _repo.Update(group);
 
-            Group dbGroup = GetGroupById(id);
-
-            if (dbGroup != null)
-            {
-                group.Id = dbGroup.Id;
-                if (group.Name.Trim() == String.Empty)
-                    group.Name = dbGroup.Name;
-                dbGroup.Name = group.Name;
-                if (group.Capacity == null)
-                    group.Capacity = dbGroup.Capacity;
-                dbGroup.Capacity = group.Capacity;
-               
-                _repo.Update(dbGroup);
-            }
-            else
-            {
-                throw new InvalidGroupException(ResponsMessages.NotFound);
-            }
             return group;
         }
     }

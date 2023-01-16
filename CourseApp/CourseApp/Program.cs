@@ -3,6 +3,7 @@
 
 
 using CourseApp.Controllers;
+using Microsoft.VisualBasic;
 using ServiceLayer.Helpers.Enums;
 using ServiceLayer.Helpers.Extentions;
 
@@ -26,73 +27,115 @@ Option: string option = Console.ReadLine();
     {
         switch (selectedOption)
         {
-            case (int)Options.CreateTeacher:
-                teacherController.Create();
+            case (int)Options.TeacherOptions:
+                ConsoleColor.Cyan.WriteConsole(" \n 1 - Create Teacher,  \n 2 - Update Teacher, \n 3 - Delete Teacher, \n 4 - Get Teacher By Id, \n 5 - Get All Teachers, \n 6 - Search Teacher For Name And Surname \n 7 - Back to menu ");
+            TeacherOptions: string option1 = Console.ReadLine();
+                int teacherOptions;
+                bool isTeacherOptions = int.TryParse(option1, out teacherOptions);
+                if (isTeacherOptions)
+                {
+
+                    switch (teacherOptions)
+                    {
+                        case (int)TeacherOptions.CreateTeacher:
+                            teacherController.Create();
+                            break;
+                        case (int)TeacherOptions.UpdateTeacher:
+                            teacherController.Update();
+                            break;
+                        case (int)TeacherOptions.DeleteTeacher:
+                            teacherController.Delete();
+                            break;
+                        case (int)TeacherOptions.GetTeacherById:
+                            teacherController.GetTeacherById();
+                            break;
+                        case (int)TeacherOptions.GetAllTeachers:
+                            Console.WriteLine("All teachers:");
+                            teacherController.GetAll();
+                            break;
+                        case (int)TeacherOptions.SearchForTeacherNameAnSurname:
+                            teacherController.Search();
+                            break;
+                        case (int)BackToMenu.TeacherOption:
+                            Console.Clear();
+                            break;
+                        default:
+                            ConsoleColor.Red.WriteConsole("Please, select correct format options!");
+                            goto TeacherOptions;
+
+                    }
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Please, select correct format options!");
+                    goto TeacherOptions;
+                }
                 break;
-            case (int)Options.UpdateTeacher:
-                teacherController.Update();
+
+            case (int)Options.GroupOptions:
+                ConsoleColor.Cyan.WriteConsole("\n 1 - Create Group \n 2 - Update Group \n 3 - Delete Group \n 4 - GetGroupById \n 5 - GetGroupsByCapacity \n 6 - GetGroupsByTeacherId \n 7 - GetAllGroupsByTeacherName \n 8 - SearchByName \n 9 - GetAllGroupsCount \n 10 - Back to menu");
+            GroupOptions: string option2 = Console.ReadLine();
+                int groupOptions;
+                bool isgroupOptions = int.TryParse(option2, out groupOptions);
+                if (isgroupOptions)
+                {
+
+                    switch (groupOptions)
+                    {
+                        case (int)GroupOptions.CreateGroup:
+                            groupController.Create();
+                            break;
+                        case (int)GroupOptions.UpdateGroup:
+                            groupController.Update();
+                            break;
+                        case (int)GroupOptions.DeleteGroup:
+                            groupController.Delete();
+                            break;
+                        case (int)GroupOptions.GetGroupById:
+                            groupController.GetGroupById();
+                            break;
+                        case (int)GroupOptions.GetGroupsByCapacity:
+                            groupController.GetGroupsByCapacity();
+                            break;
+                        case (int)GroupOptions.GetGroupsByTeacherId:
+                            groupController.GetGroupsByTeacherId();
+                            break;
+                        case (int)GroupOptions.GetAllGroupsByTeacherName:
+                            groupController.GetAllGroupsByTeacherName();
+                            break;
+                        case (int)GroupOptions.SearchByName:
+                            groupController.SearchByName();
+                            break;
+                        case (int)GroupOptions.GetAllGroupsCount:
+                            groupController.GetGroupsCount();
+                            break;
+                        case (int)BackToMenu.GroupOption:
+                            Console.Clear();
+                            break;
+                        default:
+                            ConsoleColor.Red.WriteConsole("Please, select correct format options!");
+                            goto GroupOptions;
+                    }
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Please, select correct format options!");
+                    goto GroupOptions;
+                }
                 break;
-            case (int)Options.DeleteTeacher:
-                teacherController.Delete();
-                break;
-            case (int)Options.GetTeacherById:
-                teacherController.GetTeacherById();
-                break;
-            case (int)Options.GetAllTeachers:
-                Console.WriteLine();
-                Console.WriteLine("All teachers:");
-                teacherController.GetAll();
-                break;
-            case (int)Options.SearchForTeacherNameAnSurname:
-                teacherController.Search();
-                break;
-            case (int)Options.CreateGroup:
-                groupController.Create();
-                break;
-            case (int)Options.UpdateGroup:
-                groupController.Update();
-                break;
-            case (int)Options.DeleteGroup:
-                groupController.Delete();
-                break;
-            case (int)Options.GetGroupById:
-                groupController.GetGroupById();
-                break;
-            case (int)Options.GetGroupsByCapacity:
-                groupController.GetGroupsByCapacity();
-                break;
-            case (int)Options.GetGroupsByTeacherId:
-                groupController.GetGroupsByTeacherId();
-                break;
-            case (int)Options.GetAllGroupsByTeacherName:
-                groupController.GetAllGroupsByTeacherName();
-                break;
-            case (int)Options.SearchByName:
-                groupController.SearchByName();
-                break;
-            case (int)Options.GetAllGroupsCount:
-                groupController.GetGroupsCount();
-                break;
-            default:
-                ConsoleColor.Red.WriteConsole("Please add correct option");
-                goto Option;
         }
+
+
     }
-    else
+
+
+
+    static void GetOptions()
     {
-        ConsoleColor.Red.WriteConsole("Please add correct format option");
-        goto Option;
+        ConsoleColor.Cyan.WriteConsole("Please select one option: ");
+        ConsoleColor.Cyan.WriteConsole("1 - Teacher options \n2 - Group options");
     }
 
+
 }
-
-
-
-static void GetOptions()
-{
-    ConsoleColor.Cyan.WriteConsole("Please select one option: ");
-    ConsoleColor.Cyan.WriteConsole("Teacher options: \n 1 - Create Teacher,  \n 2 - Update Teacher, \n 3 - Delete Teacher, \n 4 - Get Teacher By Id, \n 5 - Get All Teachers, \n 6 - Search Teacher For Name And Surname \n " +
-        "Group Options:\n 7 - Create Group \n 8 - Update Group \n 9 - Delete Group \n 10 - GetGroupById \n 11 - GetGroupsByCapacity \n 12 - GetGroupsByTeacherId \n 13 - GetAllGroupsByTeacherName \n 14 - SearchByName \n 15 - GetAllGroupsCount ");
-}
-
-

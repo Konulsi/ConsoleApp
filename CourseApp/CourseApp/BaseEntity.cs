@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceLayer.Helpers.Enums
+namespace DomainLayer.Common
 {
-    public enum Options
+    public abstract class BaseEntity
     {
-        TeacherOptions = 1,
-        GroupOptions = 2,
-
+        public int Id { get; set; }
     }
 }

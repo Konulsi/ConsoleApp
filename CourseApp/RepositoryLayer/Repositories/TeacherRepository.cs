@@ -38,6 +38,47 @@ namespace RepositoryLayer.Repositories
         public void Update(Teacher entity)
         {
             if (entity == null) throw new ArgumentNullException();
+            var dbTeacher = Get(teacher => teacher.Id == entity.Id);
+            if (dbTeacher != null)
+            {
+                if (entity.Age == 0)
+                {
+                    entity.Age = dbTeacher.Age;
+                }
+                else
+                {
+                    dbTeacher.Age = entity.Age;
+                }
+                if (String.IsNullOrEmpty(entity.Name))
+                {
+                    entity.Name = dbTeacher.Name;
+                }
+                else
+                {
+                    dbTeacher.Name = entity.Name;
+                }
+                if (String.IsNullOrEmpty(entity.Surname))
+                {
+                    entity.Surname = dbTeacher.Surname;
+                }
+                else
+                {
+                    dbTeacher.Surname += entity.Surname;
+                }
+                if (String.IsNullOrEmpty(entity.Address))
+                {
+                    entity.Address = dbTeacher.Address;
+                }
+                else
+                {
+                    dbTeacher.Address = entity.Address;
+                }
+
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
 
         }
     }

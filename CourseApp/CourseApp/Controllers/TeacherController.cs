@@ -28,20 +28,17 @@ namespace CourseApp.Controllers
         {
             ConsoleColor.Cyan.WriteConsole("Please, add teacher name: ");
             TeacherName: string teacherName = Console.ReadLine();
-            string pattern = "^(?!\\s+$)[a-zA-Z]+$";
+            //string pattern = "^(?!\\s+$)[a-zA-Z]+$";
 
             if (teacherName.Trim() == string.Empty )
             {
                 ConsoleColor.Red.WriteConsole("Please, dont add empty teacher name");
                 goto TeacherName;
             }
-            else if (!Regex.IsMatch(teacherName , pattern))
+            else if (CheckRegex(teacherName))
             {
-                ConsoleColor.Red.WriteConsole("Please, add correct teacher name");
                 goto TeacherName;
             }
-
-
 
             ConsoleColor.Cyan.WriteConsole("Please, add teacher surname: ");
             TeacherSurname: string teacherSurname = Console.ReadLine();
@@ -52,9 +49,8 @@ namespace CourseApp.Controllers
                 ConsoleColor.Red.WriteConsole("Please, dont add empty teacher surname");
                 goto TeacherSurname;
             }
-            else if (!Regex.IsMatch(teacherSurname, pattern))
+            else if (CheckRegex(teacherSurname))
             {
-                ConsoleColor.Red.WriteConsole("Please, add correct teacher surname");
                 goto TeacherSurname;
             }
 
@@ -75,8 +71,9 @@ namespace CourseApp.Controllers
 
             int age;
             bool isCorrectAge = int.TryParse(teacherAge, out age);
+           
 
-            if (isCorrectAge)
+            if (isCorrectAge && age > 0 )
             {
                 try
                 {
@@ -250,56 +247,93 @@ namespace CourseApp.Controllers
                 ConsoleColor.Red.WriteConsole("Please, enter correct format id: ");
                 goto TeacherId;
             }
-            try
+            else
             {
-                var existTeacher = _teacherService.GetTeacherById(teacherId);
-                if (existTeacher == null) throw new InvalidTeacherException(ResponsMessages.NotFound);
-            }
-            catch (Exception ex)
-            {
-                ConsoleColor.Red.WriteConsole(ex.Message);
-                goto TeacherId;
-            }
-            ConsoleColor.Cyan.WriteConsole("Please, enter teacher name");
-            string teacherName = Console.ReadLine();
-
-            ConsoleColor.Cyan.WriteConsole("Please, enter teacher surname");
-            string teacherSurname = Console.ReadLine();
-          
-            ConsoleColor.Cyan.WriteConsole("Please, enter teacher address");
-            string teacherAddress = Console.ReadLine();
-           
-            ConsoleColor.Cyan.WriteConsole("Please, enter teacher age");
-        TeacherAge: string teacherAgeStr = Console.ReadLine();
-            int teacherAge;
-            bool isCorrectAge = int.TryParse(teacherAgeStr, out teacherAge);
-            if (!isCorrectAge)
-            {
-
-                ConsoleColor.Red.WriteConsole("Please enter correct format age: ");
-                goto TeacherAge; 
-                
-            }
-            try
-            {
-                Teacher teacher = new Teacher()
+                try
                 {
-                    Name = teacherName,
-                    Surname = teacherSurname,
-                    Address = teacherAddress,
-                    Age = teacherAge,
-                };
-                Teacher teacher1 = new();
-                teacher1 = _teacherService.UpDate(teacherId, teacher);
-                ConsoleColor.Green.WriteConsole("Succesfully updated");
+                    var existTeacher = _teacherService.GetTeacherById(teacherId);
+                    if (existTeacher == null) throw new InvalidTeacherException(ResponsMessages.NotFound);
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    goto TeacherId;
+                }
+
+                ConsoleColor.Cyan.WriteConsole("Please, enter teacher name");
+                 TeacherName:  string teacherName = Console.ReadLine();
+                if (CheckRegex(teacherName))
+                {
+                    goto TeacherName;
+                }
+               
+
+                ConsoleColor.Cyan.WriteConsole("Please, enter teacher surname");
+                TeacherSurname: string teacherSurname = Console.ReadLine();
+                if (CheckRegex(teacherSurname))
+                {
+                    goto TeacherSurname;
+                }
+          
+
+                ConsoleColor.Cyan.WriteConsole("Please, enter teacher address");
+                string teacherAddress = Console.ReadLine();
+
+                ConsoleColor.Cyan.WriteConsole("Please, enter teacher age");
+            TeacherAge: string teacherAgeStr = Console.ReadLine();
+                int teacherAge;
+                int checkAge = 0;
+                if (String.IsNullOrEmpty(teacherAgeStr))
+                {
+                    teacherAge = checkAge;
+                }
+                else
+                {
+                    bool isCorrectAge = int.TryParse(teacherAgeStr, out teacherAge);
+                    if (!isCorrectAge)
+                    {
+
+                        ConsoleColor.Red.WriteConsole("Please enter correct format age: ");
+                        goto TeacherAge;
+                    }
+                }
+               
+                try
+                {
+                    Teacher teacher = new Teacher()
+                    {
+                        Name = teacherName,
+                        Surname = teacherSurname,
+                        Address = teacherAddress,
+                        Age = teacherAge,
+                    };
+                    Teacher teacher1 = new();
+                    teacher1 = _teacherService.UpDate(teacherId, teacher);
+                    ConsoleColor.Green.WriteConsole("Succesfully updated");
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    goto TeacherId;
+                }
             }
-            catch (Exception ex)
-            {
-                ConsoleColor.Red.WriteConsole(ex.Message);
-                goto TeacherId;
-            }
+           
                 
         }
+
+
+        public bool CheckRegex(string text)
+        {
+            string pattern = @"[^A-Za-z]";
+            if (Regex.IsMatch(text,pattern ))
+            {
+                ConsoleColor.Red.WriteConsole("Please, enter correct format");
+                return true;
+            }
+            return false;
+        }
+
+       
 
     }
 }

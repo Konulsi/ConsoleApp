@@ -75,30 +75,10 @@ namespace ServiceLayer.Services
         {
             if (id == null) throw new ArgumentNullException();
             if (teacher == null) throw new ArgumentNullException();
-            var result = GetTeacherById(id);
+            teacher.Id = (int)id;
 
-            if (result != null)
-            {
-                teacher.Id = result.Id;
-                if(teacher.Name == String.Empty)
-                    teacher.Name = result.Name;
-                result.Name= teacher.Name;
-                if (teacher.Surname == String.Empty)
-                    teacher.Surname = result.Surname;
-                result.Surname = teacher.Surname;
-                if(teacher.Address == String.Empty)
-                    teacher.Address = result.Address;
-                result.Address = teacher.Address;
-                if( teacher.Age == null)
-                    teacher.Age = result.Age;
-                result.Age = teacher.Age;
-
-                _repo.Update(result);
-            }
-            else
-            {
-                throw new InvalidTeacherException(ResponsMessages.NotFound);
-            }
+            _repo.Update(teacher);
+           
             return teacher;
         }
     }

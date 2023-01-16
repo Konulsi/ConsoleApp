@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Helpers.Enums
 {
-    public enum Options
+    public enum BackToMenu
     {
-        TeacherOptions = 1,
-        GroupOptions = 2,
-
+        TeacherOption = 7,
+        GroupOption = 10,
     }
 }

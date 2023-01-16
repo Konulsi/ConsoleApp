@@ -11,6 +11,7 @@ namespace RepositoryLayer.Repositories
 {
     public class GroupRepository : IRepository<Group>
     {
+
         public void Create(Group entity)
         {
             if (entity == null) throw new ArgumentNullException();
@@ -36,6 +37,44 @@ namespace RepositoryLayer.Repositories
         public void Update(Group entity)
         {
             if (entity == null) throw new ArgumentNullException();
+            int capacity;
+            var group = Get(m => m.Id == entity.Id);
+
+            if (group != null)
+            {
+                if (String.IsNullOrEmpty(entity.Name))  
+                {
+                    entity.Name = group.Name;            
+                }
+                else                                      
+                {
+                    group.Name = entity.Name;
+                }
+                if (group.Capacity == 0)
+                {
+                    entity.Capacity = group.Capacity;
+                }
+                else
+                {
+                    group.Capacity = group.Capacity;
+                }
+
+                if (String.IsNullOrEmpty(entity.Capacity.ToString()))
+                {
+                    group.Capacity = entity.Capacity;
+                }
+                else
+                {
+                     entity.Capacity = group.Capacity;
+                }
+
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+            group.Teacher = entity.Teacher;
+
         }
     }
 }
