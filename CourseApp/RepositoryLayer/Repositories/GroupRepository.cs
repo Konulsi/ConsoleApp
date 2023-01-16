@@ -37,7 +37,7 @@ namespace RepositoryLayer.Repositories
         public void Update(Group entity)
         {
             if (entity == null) throw new ArgumentNullException();
-            int capacity;
+            //int capacity;
             var group = Get(m => m.Id == entity.Id);
 
             if (group != null)

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\CourseApp\\CourseApp.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\CourseApp\\CourseApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\CourseApp\\CourseApp.csproj": {
+    "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\CourseApp\\CourseApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\CourseApp\\CourseApp.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\CourseApp\\CourseApp.csproj",
         "projectName": "CourseApp",
-        "projectPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\CourseApp\\CourseApp.csproj",
-        "packagesPath": "C:\\Users\\konul\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\CourseApp\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\CourseApp\\CourseApp.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\CourseApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\konul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\ServiceLayer\\ServiceLayer.csproj": {
-                "projectPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\ServiceLayer\\ServiceLayer.csproj"
+              "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\ServiceLayer\\ServiceLayer.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\ServiceLayer\\ServiceLayer.csproj"
               }
             }
           }
@@ -59,21 +59,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\DomainLayer\\DomainLayer.csproj": {
+    "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\DomainLayer\\DomainLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\DomainLayer\\DomainLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\DomainLayer\\DomainLayer.csproj",
         "projectName": "DomainLayer",
-        "projectPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\DomainLayer\\DomainLayer.csproj",
-        "packagesPath": "C:\\Users\\konul\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\DomainLayer\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\DomainLayer\\DomainLayer.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\DomainLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\konul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -114,21 +114,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\RepositoryLayer\\RepositoryLayer.csproj": {
+    "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\RepositoryLayer\\RepositoryLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\RepositoryLayer\\RepositoryLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\RepositoryLayer\\RepositoryLayer.csproj",
         "projectName": "RepositoryLayer",
-        "projectPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\RepositoryLayer\\RepositoryLayer.csproj",
-        "packagesPath": "C:\\Users\\konul\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\RepositoryLayer\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\RepositoryLayer\\RepositoryLayer.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\RepositoryLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\konul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -142,8 +142,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\DomainLayer\\DomainLayer.csproj": {
-                "projectPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\DomainLayer\\DomainLayer.csproj"
+              "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\DomainLayer\\DomainLayer.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\DomainLayer\\DomainLayer.csproj"
               }
             }
           }
@@ -173,21 +173,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\ServiceLayer\\ServiceLayer.csproj": {
+    "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\ServiceLayer\\ServiceLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\ServiceLayer\\ServiceLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\ServiceLayer\\ServiceLayer.csproj",
         "projectName": "ServiceLayer",
-        "projectPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\ServiceLayer\\ServiceLayer.csproj",
-        "packagesPath": "C:\\Users\\konul\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\ServiceLayer\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\ServiceLayer\\ServiceLayer.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\ServiceLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\konul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -201,8 +201,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\RepositoryLayer\\RepositoryLayer.csproj": {
-                "projectPath": "C:\\Users\\konul\\OneDrive\\Masaüstü\\CourseApp\\CourseApp\\RepositoryLayer\\RepositoryLayer.csproj"
+              "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\RepositoryLayer\\RepositoryLayer.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\ConsoleApp\\ConsoleApp\\CourseApp\\RepositoryLayer\\RepositoryLayer.csproj"
               }
             }
           }
@@ -232,7 +232,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -17,22 +17,20 @@ namespace CourseApp.Controllers
     public class TeacherController
     {
         private readonly ITeacherService _teacherService;
-
         public TeacherController()
         {
             _teacherService = new TeacherService();
         }
 
-
         public void Create()
         {
-            ConsoleColor.Cyan.WriteConsole("Please, add teacher name: ");
+            ConsoleColor.Cyan.WriteConsole("Please, enter teacher name: ");
             TeacherName: string teacherName = Console.ReadLine();
             //string pattern = "^(?!\\s+$)[a-zA-Z]+$";
 
             if (teacherName.Trim() == string.Empty )
             {
-                ConsoleColor.Red.WriteConsole("Please, dont add empty teacher name");
+                ConsoleColor.Red.WriteConsole("Please, dont enter empty teacher name");
                 goto TeacherName;
             }
             else if (CheckRegex(teacherName))
@@ -40,13 +38,13 @@ namespace CourseApp.Controllers
                 goto TeacherName;
             }
 
-            ConsoleColor.Cyan.WriteConsole("Please, add teacher surname: ");
+            ConsoleColor.Cyan.WriteConsole("Please, enter teacher surname: ");
             TeacherSurname: string teacherSurname = Console.ReadLine();
             
 
             if (teacherSurname.Trim() == string.Empty)
             {
-                ConsoleColor.Red.WriteConsole("Please, dont add empty teacher surname");
+                ConsoleColor.Red.WriteConsole("Please, dont enter empty teacher surname");
                 goto TeacherSurname;
             }
             else if (CheckRegex(teacherSurname))
@@ -55,18 +53,18 @@ namespace CourseApp.Controllers
             }
 
 
-            ConsoleColor.Cyan.WriteConsole("Please, add teacher address: ");
+            ConsoleColor.Cyan.WriteConsole("Please, enter teacher address: ");
             TeacherAddress: string teacherAddress = Console.ReadLine();
 
             if (teacherAddress == string.Empty)
             {
-                ConsoleColor.Red.WriteConsole("Please, dont add empty teacher address");
+                ConsoleColor.Red.WriteConsole("Please, dont enter empty teacher address");
                 goto TeacherAddress;
             }
           
 
 
-            ConsoleColor.Cyan.WriteConsole("Please, add teacher Age: ");
+            ConsoleColor.Cyan.WriteConsole("Please, enter teacher age: ");
             TeacherAge: string teacherAge = Console.ReadLine();
 
             int age;
@@ -94,26 +92,25 @@ namespace CourseApp.Controllers
                 catch (Exception ex)
                 {
 
-                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please add teacher name again!");
+                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter teacher name again!");
                     goto TeacherName;
                 }
 
             }
             else
             {
-                ConsoleColor.Red.WriteConsole("Please add correct format age");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format age");
                 goto TeacherAge;
             }
 
         }
-
         public void GetAll()
         {
             var result = _teacherService.GetAllTeachers();
 
             if (result.Count == 0)
             {
-                ConsoleColor.Cyan.WriteConsole("Data not found");
+                ConsoleColor.Red.WriteConsole("Data not found");
             }
             else
             {
@@ -124,11 +121,9 @@ namespace CourseApp.Controllers
             }
 
         }
-
-
         public void Delete()
         {
-            ConsoleColor.DarkCyan.WriteConsole("Please add teacher Id for delete");
+            ConsoleColor.Cyan.WriteConsole("Please, enter teacher Id for delete");
             TeacherId: string teacherId = Console.ReadLine();
 
             int Id;
@@ -140,27 +135,25 @@ namespace CourseApp.Controllers
                 try
                 {
                     _teacherService.Delete(Id);
-                    ConsoleColor.Green.WriteConsole("Successfully deleted");
+                    ConsoleColor.Green.WriteConsole("Successfully deleted...");
 
                 }
                 catch (Exception ex)
                 {
 
-                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please add teacher Id again");
+                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter teacher Id again");
                     goto TeacherId;
                 }
             }
             else
             {
 
-                ConsoleColor.Red.WriteConsole("Please add correct format teacher Id");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format teacher Id");
                 goto TeacherId;
 
             }
 
         }
-
-
         public void Search()
         {
 
@@ -170,7 +163,7 @@ namespace CourseApp.Controllers
 
             if (searchText == string.Empty)
             {
-                ConsoleColor.Red.WriteConsole("Please dont empty text");
+                ConsoleColor.Red.WriteConsole("Please, dont enter empty text");
                 goto SearchText;
             }
 
@@ -187,18 +180,16 @@ namespace CourseApp.Controllers
             }
             catch (Exception ex)
             {
-                ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please add teacher Id again");
+                ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter search text again");
                 goto SearchText;
 
             }
 
         }
-
-
         public void GetTeacherById()
         {
 
-            ConsoleColor.Cyan.WriteConsole("Please, add teacher Id:");
+            ConsoleColor.Cyan.WriteConsole("Please, enter teacher Id:");
             SearchId: string searchId = Console.ReadLine();
 
             int id;
@@ -220,31 +211,30 @@ namespace CourseApp.Controllers
                 catch (Exception ex)
                 {
 
-                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, add teacher Id again");
+                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter teacher Id again");
                     goto SearchId;
                 }
             }
             else
             {
 
-                ConsoleColor.Red.WriteConsole("Please, add correct format teacher Id");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format teacher Id");
                 goto SearchId;
 
             }
 
         }
-
         public void Update()
         {
 
-            ConsoleColor.DarkCyan.WriteConsole("Please, enter teacher id for update");
+            ConsoleColor.Cyan.WriteConsole("Please, enter teacher Id for update");
             TeacherId: string teacherIdStr = Console.ReadLine();
             int teacherId;
             bool isCoorectId = int.TryParse(teacherIdStr, out teacherId);
             
             if (!isCoorectId)
             {
-                ConsoleColor.Red.WriteConsole("Please, enter correct format id: ");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format Id: ");
                 goto TeacherId;
             }
             else
@@ -293,7 +283,7 @@ namespace CourseApp.Controllers
                     if (!isCorrectAge)
                     {
 
-                        ConsoleColor.Red.WriteConsole("Please enter correct format age: ");
+                        ConsoleColor.Red.WriteConsole("Please, enter correct format age: ");
                         goto TeacherAge;
                     }
                 }
@@ -309,7 +299,7 @@ namespace CourseApp.Controllers
                     };
                     Teacher teacher1 = new();
                     teacher1 = _teacherService.UpDate(teacherId, teacher);
-                    ConsoleColor.Green.WriteConsole("Succesfully updated");
+                    ConsoleColor.Green.WriteConsole("Succesfully updated...");
                 }
                 catch (Exception ex)
                 {
@@ -320,8 +310,6 @@ namespace CourseApp.Controllers
            
                 
         }
-
-
         public bool CheckRegex(string text)
         {
             string pattern = @"[^A-Za-z]";

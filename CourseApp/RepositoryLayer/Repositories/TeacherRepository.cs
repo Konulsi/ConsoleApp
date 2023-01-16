@@ -63,7 +63,7 @@ namespace RepositoryLayer.Repositories
                 }
                 else
                 {
-                    dbTeacher.Surname += entity.Surname;
+                    dbTeacher.Surname = entity.Surname;
                 }
                 if (String.IsNullOrEmpty(entity.Address))
                 {

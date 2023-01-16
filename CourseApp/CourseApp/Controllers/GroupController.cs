@@ -31,8 +31,7 @@ namespace CourseApp.Controllers
         //string pattern = "^(?!\\s+$)['.-]+$";
         //string pattern = @"[^a-za-z]";
         string pattern = @"^\w+$";
-        string msg = " / Please enter again";
-        string msgForEmptyInput = "/ If you leave it blank, there will be no change";
+        string msg = " / Please, enter again";
 
 
         public void Create()
@@ -62,19 +61,19 @@ namespace CourseApp.Controllers
                 goto GroupName;
             }
 
-            ConsoleColor.Cyan.WriteConsole("Please, enter group capacity");
+            ConsoleColor.Cyan.WriteConsole("Please, enter group capacity.");
             Capacity: string capacityStr = Console.ReadLine();
             int capacity;
             bool isCorrectCapacity = int.TryParse(capacityStr, out capacity);
 
-            if (!isCorrectCapacity || capacity <= 0)
+            if (!isCorrectCapacity)
             {
-                ConsoleColor.Red.WriteConsole("Please, enter correct format capacity number");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format capasity.");
                 goto Capacity;
             }
-            else if (capacity < 0)
+            else if (capacity <= 0)
             {
-                ConsoleColor.Red.WriteConsole("Please, enter correct capacity number ");
+                ConsoleColor.Red.WriteConsole("Capacity cannot be 0 or less than 0. Please, enter correct capacity number.");
                 goto Capacity;
             }
 
@@ -84,9 +83,9 @@ namespace CourseApp.Controllers
             int id;
             bool isCorrectId = int.TryParse(groupIdStr, out id);
             
-            if (groupIdStr == string.Empty)
+            if (String.IsNullOrWhiteSpace(groupIdStr))
             {
-                ConsoleColor.Red.WriteConsole("Please, enter correct id");
+                ConsoleColor.Red.WriteConsole("Please, enter correct id.");
                 goto GroupIdStr;
             }
             if (isCorrectId)
@@ -113,12 +112,13 @@ namespace CourseApp.Controllers
                 {
 
                     ConsoleColor.Red.WriteConsole(ex.Message + msg);
+
                 }
 
             }
             else
             {
-                ConsoleColor.Red.WriteConsole("Please, enter correct format id" + msg);
+                ConsoleColor.Red.WriteConsole("Please, enter correct format id." + msg);
                 goto GroupIdStr;
             }
           
@@ -128,7 +128,7 @@ namespace CourseApp.Controllers
 
         public void Delete()
         {
-            ConsoleColor.DarkCyan.WriteConsole("Please add group Id for delete");
+            ConsoleColor.DarkCyan.WriteConsole("Please, enter group Id for delete.");
         GroupId: string groupId = Console.ReadLine();
 
             int Id;
@@ -140,20 +140,20 @@ namespace CourseApp.Controllers
                 try
                 {
                     _groupService.Delete(Id);
-                    ConsoleColor.Green.WriteConsole("Successfully deleted");
+                    ConsoleColor.Green.WriteConsole("Successfully deleted...");
 
                 }
                 catch (Exception ex)
                 {
 
-                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please add group Id again");
+                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter group Id again.");
                     goto GroupId;
                 }
             }
             else
             {
 
-                ConsoleColor.Red.WriteConsole("Please add correct format group Id");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format group Id.");
                 goto GroupId;
 
             }
@@ -162,7 +162,7 @@ namespace CourseApp.Controllers
         
         public void GetGroupById()
         {
-            ConsoleColor.Cyan.WriteConsole("Please, add group Id:");
+            ConsoleColor.Cyan.WriteConsole("Please, enter group Id:");
            SearchId: string searchId = Console.ReadLine();
 
             int id;
@@ -181,14 +181,14 @@ namespace CourseApp.Controllers
                 catch (Exception ex)
                 {
 
-                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter teacher Id again");
+                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter teacher Id again.");
                     goto SearchId;
                 }
             }
             else
             {
 
-                ConsoleColor.Red.WriteConsole("Please, enter correct format teacher Id");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format teacher Id.");
                 goto SearchId;
 
             }
@@ -198,12 +198,12 @@ namespace CourseApp.Controllers
 
         public void GetAllGroupsByTeacherName()
         {
-            ConsoleColor.Cyan.WriteConsole("Please, add groups teacher name:");
+            ConsoleColor.Cyan.WriteConsole("Please, enter groups teacher name:");
             SearchName: string teacherName = Console.ReadLine();
 
             if (teacherName == string.Empty)
             {
-                ConsoleColor.Red.WriteConsole("Please, add correct format teacher name");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format teacher name.");
                 goto SearchName;
                
 
@@ -213,27 +213,23 @@ namespace CourseApp.Controllers
 
                 try
                 {
-
                     var groups = _groupService.GetAllGroupsByTeacherName(teacherName);
 
                     foreach (var group in groups)
                     {
-
                         ConsoleColor.Green.WriteConsole
-                         ($"Id: {group.Id}, Name: {group.Name}, Capasity: {group.Capacity}," +
-                            $" Create date: {group.CreateDate.ToString("dd,MM,yyyy")}," +
-                            $" Teacher: {group.Teacher.Id}, {group.Teacher.Name}, {group.Teacher.Surname}," +
-                            $"{group.Teacher.Age}, {group.Teacher.Address}");
+                                                       ($"Id: {group.Id}, Name: {group.Name}, Capasity: {group.Capacity}," +
+                                                        $" Create date: {group.CreateDate.ToString("dd,MM,yyyy")}," +
+                                                        $" Teacher: {group.Teacher.Id}, {group.Teacher.Name}, {group.Teacher.Surname}," +
+                                                        $"{group.Teacher.Age}, {group.Teacher.Address}");
                     }
 
                 }
                 catch (Exception ex)
                 {
-
-                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter teacher name again.");
+                    goto SearchName;
                 }
-
-
 
             }
         }
@@ -242,7 +238,7 @@ namespace CourseApp.Controllers
 
         public void GetGroupsByCapacity()
         {
-            ConsoleColor.Cyan.WriteConsole("Please, add group capacity number:");
+            ConsoleColor.Cyan.WriteConsole("Please, enter group capacity number:");
         CapacityStr: string CapacityStr = Console.ReadLine();
 
             int capacity;
@@ -250,7 +246,7 @@ namespace CourseApp.Controllers
 
             if (!isCorrectCapacity || capacity <= 0)
             {
-                ConsoleColor.Red.WriteConsole("Capacity cannot be 0 or less than 0");
+                ConsoleColor.Red.WriteConsole("Capacity cannot be 0 or less than 0.");
                 goto CapacityStr;
 
             }
@@ -289,20 +285,20 @@ namespace CourseApp.Controllers
 
 
 
-        public void SearchByName()
+        public void SearchByGroupName()
         {
-            ConsoleColor.Cyan.WriteConsole("Please add search text:");
+            ConsoleColor.Cyan.WriteConsole("Please, enter search text:");
             SearchText: string searchText = Console.ReadLine();
             //string pattern = @"^(?!\\s+$)[a-zA-Z,'. -]+$";
 
             if (searchText.Trim() == string.Empty)
             {
-                ConsoleColor.Red.WriteConsole("Please dont empty text");
+                ConsoleColor.Red.WriteConsole("Please, dont enter empty text.");
                 goto SearchText;
             }
             try
             {
-                var response = _groupService.SearchByName(searchText);
+                var response = _groupService.SearchByGroupName(searchText);
 
                 foreach (var item in response)
                 {
@@ -315,7 +311,7 @@ namespace CourseApp.Controllers
             }
             catch (Exception ex)
             {
-                ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please add search text again");
+                ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter search text again.");
                 goto SearchText;
 
             }
@@ -331,7 +327,7 @@ namespace CourseApp.Controllers
             bool isCorrectId = int.TryParse(teacherIdStr, out id);
             if (!isCorrectId || id < 0)
             {
-                ConsoleColor.Red.WriteConsole("Please,enter correct the group teacher Id");
+                ConsoleColor.Red.WriteConsole("Please,enter correct the group teacher Id.");
                 goto TeacherIdStr;
               
             }
@@ -351,7 +347,7 @@ namespace CourseApp.Controllers
             }
             catch (Exception ex)
             {
-                ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter the group teacher Id again");
+                ConsoleColor.Red.WriteConsole(ex.Message + "/" + "Please, enter the group teacher Id again.");
                 goto TeacherIdStr;
             }
         }
@@ -360,7 +356,7 @@ namespace CourseApp.Controllers
         public void Update()
         {
 
-            ConsoleColor.Cyan.WriteConsole("Please, enter group id");
+            ConsoleColor.Cyan.WriteConsole("Please, enter group id.");
         GroupId: string groupIdStr = Console.ReadLine();
             int groupId;
             
@@ -381,21 +377,21 @@ namespace CourseApp.Controllers
             
             if (!isCoorectId)
             {
-                ConsoleColor.Red.WriteConsole("Please enter correct group id: ");
+                ConsoleColor.Red.WriteConsole("Please, enter correct group id: ");
                 goto GroupId;
             }
             else if (groupId == null && groupId < 0)
             {
-                ConsoleColor.Red.WriteConsole("Please enter correct format id: ");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format id: ");
                 goto GroupId;
             }
             
 
-            ConsoleColor.Cyan.WriteConsole("Please, enter group name");
+            ConsoleColor.Cyan.WriteConsole("Please, enter group name.");
             string groupName = Console.ReadLine();
 
 
-            ConsoleColor.Cyan.WriteConsole("Please, enter group capacity");
+            ConsoleColor.Cyan.WriteConsole("Please, enter group capacity.");
         GroupCapasity: string groupCapasityStr = Console.ReadLine();
             int groupCapacity;
             int existCapacity = 0;
@@ -403,37 +399,34 @@ namespace CourseApp.Controllers
             {
                 groupCapacity = existCapacity;
             }
-            else
+            
+            bool isCorrectGroupCapacity = int.TryParse(groupCapasityStr, out groupCapacity);
+            if (isCorrectGroupCapacity)
             {
-                bool isCorrectGroupCapacity = int.TryParse(groupCapasityStr, out groupCapacity);
-                if (isCorrectGroupCapacity)
-                {
-                    CheckRegex(groupCapasityStr);
-                }
-                else if (groupCapacity < 0)
-                {
-                    ConsoleColor.Red.WriteConsole("Capacity can not be less than 0");
-                    goto GroupCapasity;
-                }
-
+                CheckRegex(groupCapasityStr);
+                goto GroupCapasity;
+            }
+            else if (groupCapacity < 0)
+            {
+                ConsoleColor.Red.WriteConsole("Capacity can not be less than 0.");
             }
 
-
-            ConsoleColor.Cyan.WriteConsole("Please, enter the group teacher id");
-        TeacherId: string teacherIdStr = Console.ReadLine();
+            ConsoleColor.Cyan.WriteConsole("Please, enter the group teacher id.");
+        TeacherIdStr: string teacherIdStr = Console.ReadLine();
             int teacherId;
             bool isCorrectId = int.TryParse(teacherIdStr, out teacherId);
-            if (!isCorrectId || teacherId < 0)
+
+            if (!isCorrectId /*|| teacherId < 0*/)
             {
                 ConsoleColor.Red.WriteConsole("Please , enter correct format teacher id: ");
-                goto TeacherId;
+                goto TeacherIdStr;
             }
             try
             {
                 var response = _teacherService.GetTeacherById(teacherId);
                 if (response == null) throw new InvalidGroupException(ResponsMessages.NotFound);
 
-               DomainLayer.Entities.Group group = new DomainLayer.Entities.Group()
+                DomainLayer.Entities.Group group = new DomainLayer.Entities.Group()
                 {
                     Name = groupName,
                     Capacity = groupCapacity,
@@ -447,10 +440,10 @@ namespace CourseApp.Controllers
             catch (Exception ex)
             {
                 ConsoleColor.Red.WriteConsole(ex.Message);
-                goto TeacherId;
+                goto TeacherIdStr;
             }
-            
-          
+
+
         }
 
 
@@ -458,9 +451,9 @@ namespace CourseApp.Controllers
         public bool CheckRegex(string text)
         {
 
-            if (Regex.IsMatch(text, @"[^A-Za-z]"))
+            if (!Regex.IsMatch(text, @"[^A-Za-z]"))
             {
-                ConsoleColor.Red.WriteConsole("Please, enter correct format");
+                ConsoleColor.Red.WriteConsole("Please, enter correct format.");
                 return true;
             }
             return false;

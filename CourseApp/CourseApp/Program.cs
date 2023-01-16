@@ -50,7 +50,7 @@ Option: string option = Console.ReadLine();
                             teacherController.GetTeacherById();
                             break;
                         case (int)TeacherOptions.GetAllTeachers:
-                            Console.WriteLine("All teachers:");
+                            ConsoleColor.DarkGreen.WriteConsole("All teachers:");
                             teacherController.GetAll();
                             break;
                         case (int)TeacherOptions.SearchForTeacherNameAnSurname:
@@ -104,7 +104,7 @@ Option: string option = Console.ReadLine();
                             groupController.GetAllGroupsByTeacherName();
                             break;
                         case (int)GroupOptions.SearchByName:
-                            groupController.SearchByName();
+                            groupController.SearchByGroupName();
                             break;
                         case (int)GroupOptions.GetAllGroupsCount:
                             groupController.GetGroupsCount();
@@ -133,8 +133,8 @@ Option: string option = Console.ReadLine();
 
     static void GetOptions()
     {
-        ConsoleColor.Cyan.WriteConsole("Please select one option: ");
-        ConsoleColor.Cyan.WriteConsole("1 - Teacher options \n2 - Group options");
+        ConsoleColor.DarkCyan.WriteConsole("Please select one option: ");
+        ConsoleColor.DarkCyan.WriteConsole("1 - Teacher options \n2 - Group options");
     }
 
 

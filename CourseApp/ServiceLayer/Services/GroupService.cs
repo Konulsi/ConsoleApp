@@ -103,7 +103,7 @@ namespace ServiceLayer.Services
             return _repo.GetAll().Count;
         }
 
-        public List<Group> SearchByName(string name)
+        public List<Group> SearchByGroupName(string name)
         {
             List<Group> groups = _repo.GetAll(m => m.Name.Trim().ToLower().Contains(name.Trim().ToLower()));
             if(groups.Count == 0) throw new InvalidGroupException(ResponsMessages.NotFound);
