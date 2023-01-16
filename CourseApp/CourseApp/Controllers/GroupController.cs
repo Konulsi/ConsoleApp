@@ -28,7 +28,9 @@ namespace CourseApp.Controllers
             _teacherService = new TeacherService();
         }
 
-        string pattern = "^(?!\\s+$)['.-]+$";
+        //string pattern = "^(?!\\s+$)['.-]+$";
+        //string pattern = @"[^a-za-z]";
+        string pattern = @"^\w+$";
         string msg = " / Please enter again";
         string msgForEmptyInput = "/ If you leave it blank, there will be no change";
 
@@ -46,7 +48,7 @@ namespace CourseApp.Controllers
                     ConsoleColor.Red.WriteConsole(ResponsMessages.StringMessage + msg);
                     goto GroupName;
                 }
-                else if(Regex.IsMatch(groupName, pattern))
+                else if(!Regex.IsMatch(groupName, pattern))
                 {
                     ConsoleColor.Red.WriteConsole(ResponsMessages.StringCharacterMessage + msg);
                     goto GroupName;
@@ -72,7 +74,7 @@ namespace CourseApp.Controllers
             }
             else if (capacity < 0)
             {
-                ConsoleColor.Red.WriteConsole("Please, enter correct number ");
+                ConsoleColor.Red.WriteConsole("Please, enter correct capacity number ");
                 goto Capacity;
             }
 
@@ -111,7 +113,6 @@ namespace CourseApp.Controllers
                 {
 
                     ConsoleColor.Red.WriteConsole(ex.Message + msg);
-                    goto GroupName;
                 }
 
             }
